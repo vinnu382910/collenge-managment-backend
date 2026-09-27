@@ -21,19 +21,7 @@ const FRONTEND_URL = process.env.FRONTEND_URL || 'http://localhost:5173';
 // ==============================================================================
 
 // CORS configuration (Allows React Vite development server)
-app.use(cors({
-  origin: (origin, callback) => {
-    // Allow requests with no origin (like mobile apps, curl, postman) or matching FRONTEND_URL
-    if (!origin || origin === FRONTEND_URL || origin.startsWith('http://localhost:')) {
-      callback(null, true);
-    } else {
-      callback(new Error(`Origin ${origin} not allowed by CORS`));
-    }
-  },
-  credentials: true,
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-  allowedHeaders: ['Content-Type', 'Authorization']
-}));
+app.use(cors());
 
 // Body Parser Middleware
 app.use(express.json());
